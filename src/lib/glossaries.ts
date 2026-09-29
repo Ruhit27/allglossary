@@ -39,7 +39,7 @@ export const GLOSSARIES: GlossaryConfig[] = [
     },
     about:
       "The vocabulary of business, in plain English. Drag to orbit, scroll to zoom, click a term to read it.",
-    credit: { label: "beTshaped.dev", href: "/" },
+    credit: { label: "allglossary.xyz", href: "/" },
   },
 ];
 

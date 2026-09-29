@@ -72,7 +72,7 @@ function layout(
     const y = 1 - (2 * (i + 0.5)) / sectionCount;
     const r = Math.sqrt(1 - y * y);
     const a = Math.PI * (3 - Math.sqrt(5)) * i;
-    return [Math.cos(a) * r * 6.5, y * 6.5, Math.sin(a) * r * 6.5];
+    return [Math.cos(a) * r * 5.2, y * 5.2, Math.sin(a) * r * 5.2];
   });
   const pos = nodes.map((n) =>
     anchors[n.section].map((c) => c + (rand() - 0.5) * 4),

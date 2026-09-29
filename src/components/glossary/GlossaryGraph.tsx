@@ -107,8 +107,8 @@ function buildModel(terms: GlossaryTerm[], connections: Map<string, Set<string>>
     [...(connections.get(t.slug) ?? [])].map((s) => indexOf.get(s)!),
   );
   const sim = forceSimulation(nodes, 3)
-    .force("charge", forceManyBody().strength(-30).distanceMin(2).distanceMax(40))
-    .force("link", forceLink(edges.map(([source, target]) => ({ source, target }))).distance(3.4).strength(0.3))
+    .force("charge", forceManyBody().strength(-22).distanceMin(2).distanceMax(40))
+    .force("link", forceLink(edges.map(([source, target]) => ({ source, target }))).distance(2.6).strength(0.3))
     .force("center", forceCenter(0, 0, 0))
     .force("x", forceX((d: SimNode) => d.ax).strength(0.05))
     .force("y", forceY((d: SimNode) => d.ay).strength(0.05))

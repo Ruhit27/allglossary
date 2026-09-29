@@ -5,7 +5,7 @@ import GlossaryExplorer from "./GlossaryExplorer";
 
 export function glossaryMetadata(slug: string): Metadata {
   const config = glossaryConfig(slug);
-  return { title: `${config.name} — beTshaped.dev`, description: config.card.description };
+  return { title: `${config.name} — allglossary.xyz`, description: config.card.description };
 }
 
 export default function GlossaryPage({ slug }: { slug: string }) {

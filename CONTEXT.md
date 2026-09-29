@@ -1,4 +1,4 @@
-# beTshaped.dev
+# allglossary.xyz
 
 A site of Glossaries that explain words in plain English, each explorable as an interactive graph of connected Terms.
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Logo from "@/components/Logo";
 import { GLOSSARIES } from "@/lib/glossaries";
 import { getGlossary } from "@/lib/glossary";
 
@@ -21,11 +22,11 @@ export default function Home() {
   const glossaries = getGlossaries();
 
   return (
-    <main id="main-content" className="flex-1 bg-[#ecebe8] text-[#1a1a1a]">
+    <main id="main-content" className="flex-1">
       <div className="mx-auto flex min-h-full max-w-4xl flex-col px-4 py-12 sm:px-6 sm:py-20">
         <header>
-          <p className={label}>beTshaped.dev</p>
-          <h1 className="mt-4 font-mono text-3xl font-semibold uppercase tracking-tight sm:text-5xl">
+          <Logo />
+          <h1 className="mt-10 font-mono text-3xl font-semibold uppercase tracking-tight sm:text-5xl">
             Glossaries
           </h1>
           <p className="mt-4 max-w-xl text-base text-black/70 sm:text-lg">
