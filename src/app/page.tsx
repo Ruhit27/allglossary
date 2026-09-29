@@ -30,7 +30,7 @@ export default function Home() {
             Glossaries
           </h1>
           <p className="mt-4 max-w-xl text-base text-black/70 sm:text-lg">
-            The words you hear at work, explained in plain English. Pick a glossary and explore how its
+            The words you keep hearing, explained in plain English. Pick a glossary and explore how its
             terms connect.
           </p>
         </header>
