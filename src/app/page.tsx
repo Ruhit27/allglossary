@@ -1,27 +1,18 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { getDictionary } from "@/lib/dictionary";
+import { GLOSSARIES } from "@/lib/glossaries";
+import { getGlossary } from "@/lib/glossary";
 
-type Glossary = {
-  href: string;
-  title: string;
-  description: string;
-  sections: string[];
-  termCount: number;
-};
-
-function getGlossaries(): Glossary[] {
-  const ai = getDictionary();
-  return [
-    {
-      href: "/ai-glossary",
-      title: "AI coding",
-      description:
-        "The vocabulary of AI coding in plain English: tokens, context windows, agents, handoffs. Explore it as a 3D graph.",
-      sections: ai.sections.map((s) => s.title),
-      termCount: ai.terms.length,
-    },
-  ];
+function getGlossaries() {
+  return GLOSSARIES.map((g) => {
+    const data = getGlossary(g.slug);
+    return {
+      href: `/${g.slug}`,
+      ...g.card,
+      sections: data.sections.map((s) => s.title),
+      termCount: data.terms.length,
+    };
+  });
 }
 
 const label = "font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-black/55";
@@ -38,7 +29,7 @@ export default function Home() {
             Glossaries
           </h1>
           <p className="mt-4 max-w-xl text-base text-black/70 sm:text-lg">
-            The words developers use, explained in plain English. Pick a glossary and explore how its
+            The words you hear at work, explained in plain English. Pick a glossary and explore how its
             terms connect.
           </p>
         </header>

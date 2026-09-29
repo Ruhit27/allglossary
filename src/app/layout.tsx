@@ -21,9 +21,9 @@ const bowlbyOneSC = Bowlby_One_SC({
 });
 
 export const metadata: Metadata = {
-  title: "beTshaped.dev — Glossaries for developers",
+  title: "beTshaped.dev — Glossaries in plain English",
   description:
-    "The words developers use, explained in plain English. Explore each glossary as an interactive graph of connected terms.",
+    "The words you hear at work, explained in plain English. Explore each glossary as an interactive graph of connected terms.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
