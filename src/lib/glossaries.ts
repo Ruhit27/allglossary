@@ -72,6 +72,18 @@ export const GLOSSARIES: GlossaryConfig[] = [
     note: HEALTH_NOTE,
     credit: { label: "allglossary.xyz", href: "/" },
   },
+  {
+    slug: "cybersecurity-glossary",
+    name: "The Cybersecurity Glossary",
+    card: {
+      title: "Cybersecurity",
+      description:
+        "The vocabulary of cybersecurity in plain English: risks, identities, networks, attacks, defenses, and response. Explore it as a 3D graph.",
+    },
+    about:
+      "The vocabulary of cybersecurity, in plain English. Drag to orbit, scroll to zoom, click a term to read it.",
+    credit: { label: "allglossary.xyz", href: "/" },
+  },
 ];
 
 export function glossaryConfig(slug: string): GlossaryConfig {
