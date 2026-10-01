@@ -4,11 +4,13 @@ import CountUp from "@/components/CountUp";
 import SiteHeader from "@/components/SiteHeader";
 import { GLOSSARIES } from "@/lib/glossaries";
 import { getGlossary } from "@/lib/glossary";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Stats — allglossary.xyz",
   description: "How many glossaries, terms, and connections allglossary.xyz has, and which terms link the most.",
-};
+  path: "/stats",
+});
 
 const label = "font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-black/55";
 

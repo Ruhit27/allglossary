@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
+import JsonLd from "@/components/JsonLd";
 import SponsorFrame from "@/components/SponsorFrame";
 import { GLOSSARIES } from "@/lib/glossaries";
 import { getGlossary } from "@/lib/glossary";
+import { absoluteUrl, SITE_NAME } from "@/lib/seo";
 
 function getGlossaries() {
   return GLOSSARIES.map((g) => {
@@ -24,6 +26,15 @@ export default function Home() {
 
   return (
     <main id="main-content" className="flex-1">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: SITE_NAME,
+          url: absoluteUrl("/"),
+          description: "The words you keep hearing, explained in plain English.",
+        }}
+      />
       <SponsorFrame>
         <div className="mx-auto flex min-h-full max-w-4xl flex-col px-4 py-12 sm:px-6 sm:py-20">
           <SiteHeader />

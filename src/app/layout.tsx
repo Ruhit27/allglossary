@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
+import { pageMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 // SF Pro can't be self-hosted, so Apple devices get it via the system font
@@ -15,9 +16,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "allglossary.xyz — Glossaries in plain English",
-  description:
-    "The words you keep hearing, explained in plain English. Explore each glossary as an interactive graph of connected terms.",
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
+  ...pageMetadata({
+    title: "allglossary.xyz — Glossaries in plain English",
+    description:
+      "The words you keep hearing, explained in plain English. Explore each glossary as an interactive graph of connected terms.",
+    path: "/",
+  }),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

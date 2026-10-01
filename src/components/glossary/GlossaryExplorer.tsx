@@ -185,11 +185,14 @@ function LoadingScreen() {
 export default function GlossaryExplorer({
   data,
   config,
+  initialTerm,
 }: {
   data: GlossaryData;
   config: GlossaryConfig;
+  /** Set on a term page (/<glossary>/<term>), so the entry is in the server HTML. */
+  initialTerm?: string;
 }) {
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string | null>(initialTerm ?? null);
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
@@ -217,11 +220,9 @@ export default function GlossaryExplorer({
     setSearchOpen(false);
     setQuery("");
     setListOpen(false);
-    const url = new URL(window.location.href);
-    if (slug) url.searchParams.set("term", slug);
-    else url.searchParams.delete("term");
-    window.history.replaceState(null, "", url);
-  }, []);
+    // Each term has its own page, so the address bar always holds a shareable, crawlable URL.
+    window.history.replaceState(null, "", slug ? `/${config.slug}/${slug}` : `/${config.slug}`);
+  }, [config.slug]);
 
   const bySlug = useMemo(() => new Map(data.terms.map((t) => [t.slug, t])), [data]);
 
@@ -254,11 +255,14 @@ export default function GlossaryExplorer({
   const matches = useMemo(() => (ranked ? new Set(ranked) : null), [ranked]);
   const tokens = useMemo(() => query.trim().split(/\s+/).filter(Boolean), [query]);
 
+  // Old links used ?term=<slug>; open the term and move to its page URL.
   useEffect(() => {
     const fromUrl = new URLSearchParams(window.location.search).get("term");
+    if (!fromUrl || !bySlug.has(fromUrl)) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect -- the URL is only readable after hydration
-    if (fromUrl && bySlug.has(fromUrl)) setSelected(fromUrl);
-  }, [bySlug]);
+    setSelected(fromUrl);
+    window.history.replaceState(null, "", `/${config.slug}/${fromUrl}`);
+  }, [bySlug, config.slug]);
 
   useEffect(() => {
     let saved: string | null = null;

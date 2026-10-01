@@ -23,6 +23,12 @@ describe.each(GLOSSARIES)("$slug", ({ slug }) => {
     expect([...listed].sort()).toEqual(files);
   });
 
+  it("gives every term its own URL slug", () => {
+    const slugs = data.terms.map((t) => t.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    expect(slugs.every(Boolean)).toBe(true);
+  });
+
   it("links every term to at least one other", () => {
     const unlinked = data.terms.filter((t) => t.links.length === 0).map((t) => t.title);
     expect(unlinked).toEqual([]);

@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
+import CopyButton from "@/components/CopyButton";
 import SiteHeader from "@/components/SiteHeader";
 import SponsorFrame from "@/components/SponsorFrame";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Sponsor — allglossary.xyz",
   description: "Help keep allglossary.xyz free and growing. Sponsorship pays for new glossaries and keeps the site ad-free.",
-};
+  path: "/sponsor",
+});
 
 // Where sponsors get in touch. Swap for a GitHub Sponsors or payment page once one is set up.
-const SPONSOR_EMAIL = "majharulislamruhit727@gmail.com";
+const SPONSOR_EMAILS = ["majharulislamruhit727@gmail.com", "nafiunizam17@gmail.com"];
 
 const label = "font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-black/55";
 
@@ -56,13 +59,34 @@ export default function SponsorPage() {
               pages. To talk about sponsoring, reach out and say which glossary you&apos;d like to see next.
             </p>
             <a
-              href={`mailto:${SPONSOR_EMAIL}?subject=Sponsoring%20allglossary`}
+              href={`mailto:${SPONSOR_EMAILS.join(",")}?subject=Sponsoring%20allglossary`}
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#1a1a1a] px-5 py-2.5 font-mono text-[12px] font-medium uppercase tracking-[0.15em] text-[#ecebe8] transition-opacity hover:opacity-85"
             >
               Get in touch
               <ArrowRight size={16} />
             </a>
-            <p className="mt-3 font-mono text-sm break-all text-black/60">{SPONSOR_EMAIL}</p>
+
+            <p className={`${label} mt-8`}>Or write to either of us</p>
+            <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+              {SPONSOR_EMAILS.map((email) => (
+                <li
+                  key={email}
+                  className="flex items-center gap-3 rounded-xl border border-black/15 bg-white/60 p-3 pl-4"
+                >
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#1a1a1a] text-[#ecebe8]">
+                    <Mail size={16} />
+                  </span>
+                  <a
+                    href={`mailto:${email}?subject=Sponsoring%20allglossary`}
+                    className="min-w-0 flex-1 break-all font-mono text-sm text-black/80 underline-offset-4 hover:underline"
+                    title={email}
+                  >
+                    {email}
+                  </a>
+                  <CopyButton text={email} label={`Copy ${email}`} />
+                </li>
+              ))}
+            </ul>
           </section>
         </div>
       </SponsorFrame>
