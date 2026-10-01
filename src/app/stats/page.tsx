@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import CountUp from "@/components/CountUp";
 import SiteHeader from "@/components/SiteHeader";
 import { GLOSSARIES } from "@/lib/glossaries";
 import { getGlossary } from "@/lib/glossary";
@@ -51,7 +52,7 @@ export default function StatsPage() {
           {totals.map((t) => (
             <div key={t.label} className="rounded-2xl border border-black/20 bg-white/40 p-5">
               <dt className={label}>{t.label}</dt>
-              <dd className="mt-2 font-mono text-3xl font-semibold tabular-nums">{t.value}</dd>
+              <dd className="mt-2 font-mono text-3xl font-semibold tabular-nums"><CountUp value={t.value} /></dd>
             </div>
           ))}
         </dl>
@@ -75,9 +76,9 @@ export default function StatsPage() {
                       {r.title}
                     </Link>
                   </td>
-                  <td className="py-3 pr-4 text-right font-mono tabular-nums">{r.terms}</td>
-                  <td className="py-3 pr-4 text-right font-mono tabular-nums">{r.sections}</td>
-                  <td className="py-3 pr-4 text-right font-mono tabular-nums">{r.links}</td>
+                  <td className="py-3 pr-4 text-right font-mono tabular-nums"><CountUp value={r.terms} /></td>
+                  <td className="py-3 pr-4 text-right font-mono tabular-nums"><CountUp value={r.sections} /></td>
+                  <td className="py-3 pr-4 text-right font-mono tabular-nums"><CountUp value={r.links} /></td>
                   <td className="py-3 text-black/70">
                     {r.top.title} <span className="font-mono text-sm text-black/45">({r.top.count})</span>
                   </td>

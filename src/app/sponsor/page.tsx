@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 // Where sponsors get in touch. Swap for a GitHub Sponsors or payment page once one is set up.
-const SPONSOR_LINK = { label: "Get in touch on GitHub", href: "https://github.com/Ruhit27" };
+const SPONSOR_EMAIL = "majharulislamruhit727@gmail.com";
 
 const label = "font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-black/55";
 
@@ -56,14 +56,13 @@ export default function SponsorPage() {
               pages. To talk about sponsoring, reach out and say which glossary you&apos;d like to see next.
             </p>
             <a
-              href={SPONSOR_LINK.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`mailto:${SPONSOR_EMAIL}?subject=Sponsoring%20allglossary`}
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#1a1a1a] px-5 py-2.5 font-mono text-[12px] font-medium uppercase tracking-[0.15em] text-[#ecebe8] transition-opacity hover:opacity-85"
             >
-              {SPONSOR_LINK.label}
+              Get in touch
               <ArrowRight size={16} />
             </a>
+            <p className="mt-3 font-mono text-sm break-all text-black/60">{SPONSOR_EMAIL}</p>
           </section>
         </div>
       </SponsorFrame>
