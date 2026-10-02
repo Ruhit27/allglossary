@@ -101,6 +101,18 @@ export const GLOSSARIES: GlossaryConfig[] = [
       "The vocabulary of the web, in plain English. Drag to orbit, scroll to zoom, click a term to read it.",
     credit: { label: "allglossary.xyz", href: "/" },
   },
+  {
+    slug: "programming-glossary",
+    name: "The Programming Glossary",
+    card: {
+      title: "Programming",
+      description:
+        "The vocabulary of programming in plain English: variables, functions, loops, bugs. Explore it as a 3D graph.",
+    },
+    about:
+      "The vocabulary of programming, in plain English. Drag to orbit, scroll to zoom, click a term to read it.",
+    credit: { label: "allglossary.xyz", href: "/" },
+  },
 ];
 
 /** The glossaries shown on the site. */
