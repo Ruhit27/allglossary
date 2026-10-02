@@ -3,12 +3,12 @@ import { ArrowRight } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import JsonLd from "@/components/JsonLd";
 import SponsorFrame from "@/components/SponsorFrame";
-import { GLOSSARIES } from "@/lib/glossaries";
+import { LISTED_GLOSSARIES } from "@/lib/glossaries";
 import { getGlossary } from "@/lib/glossary";
 import { absoluteUrl, SITE_NAME } from "@/lib/seo";
 
 function getGlossaries() {
-  return GLOSSARIES.map((g) => {
+  return LISTED_GLOSSARIES.map((g) => {
     const data = getGlossary(g.slug);
     return {
       href: `/${g.slug}`,

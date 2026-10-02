@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CountUp from "@/components/CountUp";
 import SiteHeader from "@/components/SiteHeader";
-import { GLOSSARIES } from "@/lib/glossaries";
+import { LISTED_GLOSSARIES } from "@/lib/glossaries";
 import { getGlossary } from "@/lib/glossary";
 import { pageMetadata } from "@/lib/seo";
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
 const label = "font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-black/55";
 
 function getStats() {
-  return GLOSSARIES.map((g) => {
+  return LISTED_GLOSSARIES.map((g) => {
     const { sections, terms } = getGlossary(g.slug);
     // The term other terms link to most often.
     const inbound = new Map<string, number>();

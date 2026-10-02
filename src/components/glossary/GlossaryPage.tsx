@@ -17,12 +17,13 @@ export function glossaryMetadata(slug: string): Metadata {
 
 /** Every term page under a glossary, prerendered at build time. */
 export function glossaryTermParams(slug: string) {
+  if (glossaryConfig(slug).hidden) return [];
   return getGlossary(slug).terms.map((t) => ({ term: t.slug }));
 }
 
 export function glossaryTermMetadata(slug: string, termSlug: string): Metadata {
   const term = getGlossary(slug).terms.find((t) => t.slug === termSlug);
-  if (!term) notFound();
+  if (!term || glossaryConfig(slug).hidden) notFound();
   return pageMetadata({
     title: `${term.title} — ${glossaryConfig(slug).name}`,
     description: term.description,
@@ -69,6 +70,7 @@ function structuredData(slug: string, termSlug?: string) {
 
 /** A glossary's explorer; with `term`, it opens on that term's entry. */
 export default function GlossaryPage({ slug, term }: { slug: string; term?: string }) {
+  if (glossaryConfig(slug).hidden) notFound();
   const data = getGlossary(slug);
   if (term && !data.terms.some((t) => t.slug === term)) notFound();
   return (

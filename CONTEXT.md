@@ -5,7 +5,7 @@ A site of Glossaries that explain words in plain English, each explorable as an 
 ## Language
 
 **Glossary**:
-A set of Terms from one field, such as AI coding or business, grouped into Sections and linked to each other. The home page lists every Glossary; each has its own page.
+A set of Terms from one field, such as AI coding or business, grouped into Sections and linked to each other. The home page lists every Glossary that isn't hidden; each has its own page. A hidden Glossary is kept but not shown on the site at all, until it's ready to come back.
 _Avoid_: Dictionary, wiki, docs
 
 **Term**:

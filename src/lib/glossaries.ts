@@ -15,6 +15,8 @@ export type GlossaryConfig = {
   source?: Link;
   /** Bottom-left link on the graph. */
   credit: Link;
+  /** Kept in the repo but left off the site: no listing, and its pages 404. */
+  hidden?: boolean;
 };
 
 const HEALTH_NOTE =
@@ -36,6 +38,7 @@ export const GLOSSARIES: GlossaryConfig[] = [
   },
   {
     slug: "business-glossary",
+    hidden: true,
     name: "The Business Glossary",
     card: {
       title: "Business",
@@ -48,6 +51,7 @@ export const GLOSSARIES: GlossaryConfig[] = [
   },
   {
     slug: "gym-glossary",
+    hidden: true,
     name: "The Gym Glossary",
     card: {
       title: "Gym",
@@ -61,6 +65,7 @@ export const GLOSSARIES: GlossaryConfig[] = [
   },
   {
     slug: "nutrition-glossary",
+    hidden: true,
     name: "The Nutrition Glossary",
     card: {
       title: "Nutrition",
@@ -85,6 +90,9 @@ export const GLOSSARIES: GlossaryConfig[] = [
     credit: { label: "allglossary.xyz", href: "/" },
   },
 ];
+
+/** The glossaries shown on the site. */
+export const LISTED_GLOSSARIES = GLOSSARIES.filter((g) => !g.hidden);
 
 export function glossaryConfig(slug: string): GlossaryConfig {
   const config = GLOSSARIES.find((g) => g.slug === slug);

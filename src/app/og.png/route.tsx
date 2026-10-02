@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { GLOSSARIES } from "@/lib/glossaries";
+import { LISTED_GLOSSARIES } from "@/lib/glossaries";
 
 export const dynamic = "force-static";
 
@@ -45,7 +45,7 @@ export function GET() {
             Glossaries in plain English
           </div>
           <div style={{ marginTop: 28, fontSize: 34, color: "rgba(0,0,0,0.65)" }}>
-            {GLOSSARIES.map((g) => g.card.title).join(" · ")}
+            {LISTED_GLOSSARIES.map((g) => g.card.title).join(" · ")}
           </div>
         </div>
       </div>
