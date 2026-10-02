@@ -89,6 +89,18 @@ export const GLOSSARIES: GlossaryConfig[] = [
       "The vocabulary of cybersecurity, in plain English. Drag to orbit, scroll to zoom, click a term to read it.",
     credit: { label: "allglossary.xyz", href: "/" },
   },
+  {
+    slug: "web-glossary",
+    name: "The Web Glossary",
+    card: {
+      title: "Web",
+      description:
+        "The vocabulary of the web in plain English: browsers, URLs, HTML, APIs, hosting. Explore it as a 3D graph.",
+    },
+    about:
+      "The vocabulary of the web, in plain English. Drag to orbit, scroll to zoom, click a term to read it.",
+    credit: { label: "allglossary.xyz", href: "/" },
+  },
 ];
 
 /** The glossaries shown on the site. */
