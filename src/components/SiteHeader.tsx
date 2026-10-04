@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "./Logo";
 
 const NAV_LINKS = [
+  { label: "Blog", href: "/blog" },
   { label: "Stats", href: "/stats" },
   { label: "Sponsor", href: "/sponsor" },
 ];

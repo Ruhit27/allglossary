@@ -16,6 +16,14 @@ _Avoid_: Entry, node, definition
 A named group of related Terms within a Glossary. Terms in the same Section cluster together on the graph.
 _Avoid_: Category, chapter, topic
 
+**Article**:
+A long-form, plain-English explainer on the site's Blog that goes deeper than a Term and links out to Terms in any Glossary. An Article is tagged with every Glossary whose Terms it links to; it never links into a hidden Glossary. Each has a published date and may have an updated date. A draft Article is kept but not shown on the site until it's published.
+_Avoid_: Post, blog post, guide, essay
+
+**Blog**:
+The part of the site that lists every published Article, newest first.
+_Avoid_: News, journal
+
 **Sponsor**:
 A company that funds allglossary.xyz and is thanked with a card on the site.
 _Avoid_: Advertiser, partner, ad

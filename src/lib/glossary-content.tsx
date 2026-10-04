@@ -2,27 +2,25 @@ import type { ReactNode } from "react";
 import { termSlug } from "@/lib/term-slug";
 
 const INLINE_RE =
-  /\[([^\]]+)\]\(\.\/([^)]+)\.md\)|\*\*([^*]+)\*\*|`([^`]+)`|(?<![\w])_([^_]+)_(?![\w])|(?<![\w*])\*([^*]+)\*(?![\w*])/g;
+  /\[([^\]]+)\]\((\.\.?\/[^)]+)\.md\)|\*\*([^*]+)\*\*|`([^`]+)`|(?<![\w])_([^_]+)_(?![\w])|(?<![\w*])\*([^*]+)\*(?![\w*])/g;
 
-export function inline(text: string, onOpen: (slug: string) => void): ReactNode[] {
+export const LINK_CLASS = "cursor-pointer underline decoration-dotted underline-offset-2 hover:decoration-solid";
+
+/**
+ * Renders bold, code, italics, and `.md` links. `link` gets each link's label
+ * and its decoded target without ".md", such as "./Token" or "../ai-glossary/Token".
+ */
+export function renderInline(
+  text: string,
+  link: (label: string, target: string, key: number) => ReactNode,
+): ReactNode[] {
   const out: ReactNode[] = [];
   let last = 0;
   for (const m of text.matchAll(INLINE_RE)) {
     if (m.index > last) out.push(text.slice(last, m.index));
     const key = m.index;
-    if (m[1] !== undefined) {
-      const slug = termSlug(decodeURIComponent(m[2]));
-      out.push(
-        <button
-          key={key}
-          type="button"
-          onClick={() => onOpen(slug)}
-          className="cursor-pointer underline decoration-dotted underline-offset-2 hover:decoration-solid"
-        >
-          {m[1]}
-        </button>,
-      );
-    } else if (m[3] !== undefined) out.push(<strong key={key}>{m[3]}</strong>);
+    if (m[1] !== undefined) out.push(link(m[1], decodeURIComponent(m[2]), key));
+    else if (m[3] !== undefined) out.push(<strong key={key}>{m[3]}</strong>);
     else if (m[4] !== undefined)
       out.push(
         <code key={key} className="rounded bg-black/[0.06] px-1 py-0.5 text-[0.9em]">
@@ -34,6 +32,20 @@ export function inline(text: string, onOpen: (slug: string) => void): ReactNode[
   }
   if (last < text.length) out.push(text.slice(last));
   return out;
+}
+
+/** Inline text in a Term entry, where a link opens another Term in place. */
+export function inline(text: string, onOpen: (slug: string) => void): ReactNode[] {
+  return renderInline(text, (label, target, key) => {
+    // Terms link only to their own Glossary ("./Token"); show anything else as plain text.
+    if (!target.startsWith("./")) return label;
+    const slug = termSlug(target.slice(2));
+    return (
+      <button key={key} type="button" onClick={() => onOpen(slug)} className={LINK_CLASS}>
+        {label}
+      </button>
+    );
+  });
 }
 
 const splitRow = (line: string) =>
