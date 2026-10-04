@@ -64,7 +64,8 @@ describe("getArticles", () => {
     ["an unknown Glossary", "../cooking-glossary/Salt.md", "unknown glossary"],
     ["a Term that doesn't exist", "../ai-glossary/Not%20a%20term.md", "unknown term"],
     ["something that isn't a Term", "./Another%20article.md", "not a Term"],
-    ["a website", "https://example.com", "not a Term"],
+    ["a website without https", "http://example.com", "not a Term"],
+    ["a website address with a space in it", "https://example.com/a b", "not a Term"],
     ["a part of a Term", "../ai-glossary/Agent.md#usage", "not a Term"],
   ])("fails when an Article links to %s", (_, target, message) => {
     const dir = blog({ "Broken.md": `---\ndescription: d\npublished: 2026-01-05\n---\nSee [this](${target}).` });
@@ -94,5 +95,12 @@ describe("getArticles", () => {
 
   it("loads every Article in the repo, drafts included", () => {
     expect(() => getArticles()).not.toThrow();
+  });
+
+  it("lets an Article link to other websites over https, without tagging it", () => {
+    const [article] = getArticles(
+      blog({ "Linked out.md": "---\ndescription: d\npublished: 2026-01-05\n---\nSee [the docs](https://example.com/docs?a=1)." }),
+    );
+    expect(article.glossaries).toEqual([]);
   });
 });

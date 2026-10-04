@@ -17,7 +17,7 @@ A named group of related Terms within a Glossary. Terms in the same Section clus
 _Avoid_: Category, chapter, topic
 
 **Article**:
-A long-form, plain-English explainer on the site's Blog that goes deeper than a Term and links out to Terms in any Glossary. An Article is tagged with every Glossary whose Terms it links to; it never links into a hidden Glossary. Each has a published date and may have an updated date. A draft Article is kept but not shown on the site until it's published.
+A long-form, plain-English piece on the site's Blog (an explainer, comparison, list, or how-to) that goes deeper than a Term and links to Terms in any Glossary, and sometimes to other websites. An Article is tagged with every Glossary whose Terms it links to; it never links into a hidden Glossary. Each has a published date and may have an updated date. A draft Article is kept but not shown on the site until it's published.
 _Avoid_: Post, blog post, guide, essay
 
 **Blog**:

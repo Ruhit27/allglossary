@@ -1,6 +1,7 @@
 import "server-only";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { isWebsite } from "@/lib/glossary-content";
 import { GLOSSARIES } from "@/lib/glossaries";
 import { termSlug } from "@/lib/term-slug";
 
@@ -72,7 +73,12 @@ function parseArticle(dir: string, file: string): Article {
   const draft = field("draft");
   if (draft !== undefined && draft !== "true") throw new Error(`${file}: draft must be "true" or left out, got "${draft}"`);
   const body = match[2].trim();
-  const linked = new Set([...body.matchAll(LINK_RE)].map((m) => linkedGlossary(file, m[1])));
+  const linked = new Set(
+    [...body.matchAll(LINK_RE)]
+      .map((m) => m[1])
+      .filter((target) => !isWebsite(target))
+      .map((target) => linkedGlossary(file, target)),
+  );
   return {
     slug: termSlug(title),
     title,

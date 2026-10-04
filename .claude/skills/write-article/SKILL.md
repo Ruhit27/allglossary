@@ -4,7 +4,7 @@ description: Draft an Article for the allglossary.xyz Blog, on a topic you give 
 disable-model-invocation: true
 ---
 
-An **Article** is a long-form, plain-English explainer on the Blog that goes deeper than a Term and links out to Terms in any Glossary (see `CONTEXT.md`). You write **drafts** only: publishing is the human's step.
+You write an **Article**, as `CONTEXT.md` defines it. You write **drafts** only: publishing is the human's step.
 
 ## 1. Settle the topic
 
@@ -37,14 +37,17 @@ draft: true
 Body.
 ```
 
+Pick the format that fits the topic: an explainer, a comparison ("X vs Y", with a table), a list, a how-to, or alternatives to something. Case studies, interviews, and reviews need real results, real people, or real hands-on use: write one only from material the user supplies.
+
 The body uses the **same voice as Terms**. Open two or three Term files as the model: plain English, short paragraphs, everyday examples, and every jargon word explained or linked the moment it appears. Aim for 800–1,500 words.
 
 - **Link each Term the first time it appears**: `[context window](../ai-glossary/Context%20window.md)`, with the Term title exactly as its file name and spaces written `%20`. Link only to Terms in listed Glossaries. The Article's Glossary tags come from these links, so link at least one Term.
-- **Markup the site renders**: paragraphs, `##` and `###` headings, `- ` bullet lists (a lead-in line may sit directly above them), `**bold**`, `` `code` ``, and `_italic_`. Express everything else (tables, numbered lists, images, links to other websites, other Articles) as prose.
+- **Link to other websites** only over `https://`, and only to primary sources: official docs, the maker's own pages, standards bodies. Every product fact (features, prices, limits) needs one, checked on the web today, since these change monthly.
+- **Markup the site renders**: paragraphs, `##` and `###` headings, `- ` bullet lists (a lead-in line may sit directly above them), tables written like the ones in Term files, `**bold**`, `` `code` ``, and `_italic_`. Number list items inside `###` headings ("### 1. Phishing"). Express everything else (images, links to other Articles) as prose.
 
 ## 4. Check it
 
-Run `npx vitest run src/lib/articles.test.ts`. That test loads every Article, drafts included, and fails on a bad date, a missing description, a `draft` value other than `true`, or any link that isn't to a Term in a listed Glossary. Done when it is green.
+Run `npx vitest run src/lib/articles.test.ts`. That test loads every Article, drafts included, and fails on a bad date, a missing description, a `draft` value other than `true`, or any link that is neither an `https://` URL nor a Term in a listed Glossary. Done when it is green.
 
 ## 5. Hand it over
 
